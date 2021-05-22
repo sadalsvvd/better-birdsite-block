@@ -12,6 +12,18 @@ Finally, an _actual_ block.
 
 ## Installation
 
+While I am submitting this extension to the Chrome Extension marketplace, you can install it manually.
+
+1. Download the ZIP (hit the big green Code button, then Download ZIP)
+2. Unzip the ZIP file somewhere nice
+3. Go to the URL `chrome://extensions/` in Chrome
+4. Enable "Developer mode" in the top right
+5. Click the "Load unpacked" button now available on the left
+6. Navigate to the unzipped folder you downloaded and select the "public" folder. If you just unzipped this to your Downloads folder on Windows, for example, the directory is `C:\Users\<YOUR_USERNAME_HERE>\Downloads\better-birdsite-block-master\public`
+7. You're done!
+
+Note that when 
+
 ## Usage
 
 Once installed, Better Birdsite is on by default. To customize options, click on the Better Birdsite Blocker icon (you may need to select the gear icon to show a list of all available extensions):

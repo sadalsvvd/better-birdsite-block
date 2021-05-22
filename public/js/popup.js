@@ -15,14 +15,6 @@ Object.keys(radioMap).forEach(key => {
     });
 });
 chrome.storage.sync.get(['trackBlocked', 'trackMuted', 'trackPrivate', 'extensionOn'], (values) => {
-    if (Object.keys(values).length === 0) {
-        chrome.storage.sync.set({
-            extensionOn: true,
-            trackBlocked: true,
-            trackMuted: true,
-            trackPrivate: true,
-        });
-    }
     const blockedYesRadio = document.querySelector('#blocked-yes');
     const blockedNoRadio = document.querySelector('#blocked-no');
     const mutedYesRadio = document.querySelector('#muted-yes');
@@ -31,12 +23,31 @@ chrome.storage.sync.get(['trackBlocked', 'trackMuted', 'trackPrivate', 'extensio
     const privateNoRadio = document.querySelector('#private-no');
     const extensionYesRadio = document.querySelector('#extension-yes');
     const extensionNoRadio = document.querySelector('#extension-no');
-    blockedYesRadio.checked = values.trackBlocked;
-    blockedNoRadio.checked = !values.trackBlocked;
-    mutedYesRadio.checked = values.trackMuted;
-    mutedNoRadio.checked = !values.trackMuted;
-    privateYesRadio.checked = values.trackPrivate;
-    privateNoRadio.checked = !values.trackPrivate;
-    extensionYesRadio.checked = values.extensionOn;
-    extensionNoRadio.checked = !values.extensionOn;
+    console.log(values);
+    if (Object.keys(values).length === 0) {
+        chrome.storage.sync.set({
+            extensionOn: true,
+            trackBlocked: true,
+            trackMuted: true,
+            trackPrivate: true,
+        });
+        blockedYesRadio.checked = true;
+        blockedNoRadio.checked = false;
+        mutedYesRadio.checked = true;
+        mutedNoRadio.checked = false;
+        privateYesRadio.checked = true;
+        privateNoRadio.checked = false;
+        extensionYesRadio.checked = true;
+        extensionNoRadio.checked = false;
+    }
+    else {
+        blockedYesRadio.checked = values.trackBlocked;
+        blockedNoRadio.checked = !values.trackBlocked;
+        mutedYesRadio.checked = values.trackMuted;
+        mutedNoRadio.checked = !values.trackMuted;
+        privateYesRadio.checked = values.trackPrivate;
+        privateNoRadio.checked = !values.trackPrivate;
+        extensionYesRadio.checked = values.extensionOn;
+        extensionNoRadio.checked = !values.extensionOn;
+    }
 });
