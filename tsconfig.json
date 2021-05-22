@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "lib": ["dom", "es2016"],
+        "module": "es2015",
+        "target": "es6",
+        "esModuleInterop": true,
+        "sourceMap": false,
+        "rootDir": "src",
+        "outDir": "public/js",
+        "noEmitOnError": true,
+        "jsx": "react",
+        "typeRoots": [ "node_modules/@types" ]
+    }
+}

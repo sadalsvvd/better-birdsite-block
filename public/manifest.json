@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+
+  "name": "Better Birdsite Block",
+  "description": "Properly hide blocked, muted, and private reply threads that you didn't care about in the first place",
+  "version": "1.0",
+
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.twitter.com/*",
+        "http://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://twitter.com/*"
+      ],
+      "js": ["js/content_script.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "permissions": [
+    "storage"
+  ]
+}

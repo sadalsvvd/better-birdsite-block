@@ -1,0 +1,23 @@
+{
+  "name": "chrome-extension-typescript-starter",
+  "version": "1.0.0",
+  "description": "chrome-extension-typescript-starter",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.100",
+    "@types/jquery": "^3.3.33",
+    "rimraf": "3.0.2",
+    "typescript": "~3.8.3"
+  }
+}
