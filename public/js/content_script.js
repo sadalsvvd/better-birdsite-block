@@ -197,7 +197,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         // });
     };
     getSettings().then(settings => {
-        console.log(settings);
         waitForMain(settings);
     });
 })();

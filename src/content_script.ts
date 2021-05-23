@@ -213,7 +213,6 @@
   };
 
   getSettings().then(settings => {
-    console.log(settings);
     waitForMain(settings);
   });
 
