@@ -156,26 +156,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     let lastMutation = Date.now();
     let lastCount = 0;
     let lastActedCount = 0;
+    let censorInterval;
     const censorTimeline = (timeline, settings) => {
         timeline.addEventListener('DOMNodeInserted', () => {
             lastMutation = Date.now();
             lastCount = timeline.children.length;
         });
+        if (censorInterval) {
+            clearInterval(censorInterval);
+        }
         // Attempt to hide once TL has settled, within about 200ms
-        setInterval(() => {
+        censorInterval = setInterval(() => {
+            lastCount = timeline.children.length;
             let countMismatch = lastCount !== lastActedCount;
-            if (countMismatch && Date.now() - lastMutation > TIMEOUT + 50) {
-                lastActedCount = lastCount;
-                if (settings.trackBlocked) {
-                    hideReplyThreads('from an account you blocked');
-                }
-                if (settings.trackMuted) {
-                    hideReplyThreads('from an account you muted');
-                }
-                if (settings.trackPrivate) {
-                    hideReplyThreads('You’re unable to view this Tweet because this account owner limits who can view their Tweets.');
-                }
+            // TODO: Make this logic work, otherwise every 100ms is pretty minimal
+            // if (countMismatch && Date.now() - lastMutation > TIMEOUT + 50) {
+            lastActedCount = lastCount;
+            if (settings.trackBlocked) {
+                hideReplyThreads('from an account you blocked');
             }
+            if (settings.trackMuted) {
+                hideReplyThreads('from an account you muted');
+            }
+            if (settings.trackPrivate) {
+                hideReplyThreads('You’re unable to view this Tweet because this account owner limits who can view their Tweets.');
+            }
+            // }
         }, 100);
         // // @ts-ignore
         // const censorTimeline = (mutationList, observer) => {
@@ -198,5 +204,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     };
     getSettings().then(settings => {
         waitForMain(settings);
+        window.addEventListener('popstate', function (event) {
+            console.log('popstate, resetting wait for main');
+            waitForMain(settings);
+        });
     });
 })();
