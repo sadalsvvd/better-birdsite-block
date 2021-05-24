@@ -74,7 +74,8 @@
         // SOMETHING WENT WRONG
         let nextEl = lastEl.nextElementSibling;
         if (!nextEl) {
-          throw new Error('Something went wrong trying to tweet thread boundary');
+          // throw new Error('Something went wrong trying to tweet thread boundary');
+          return;
         }
         //
 
@@ -152,7 +153,8 @@
           } else if (containerChildren.length === 2) {
             timeline = container.children[1];
           } else {
-            throw new Error('Don\'t know what to do with neither 4 nor 2 children in container')
+            // throw new Error('Don\'t know what to do with neither 4 nor 2 children in container')
+            return;
           }
 
           censorTimeline(timeline, settings);
